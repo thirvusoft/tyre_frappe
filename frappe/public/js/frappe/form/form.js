@@ -622,6 +622,7 @@ frappe.ui.form.Form = class FrappeForm {
 		}
 
 		this.$wrapper.trigger("render_complete");
+		this.enter_key_tab();
 
 		frappe.after_ajax(() => {
 			$(document).ready(() => {
@@ -629,6 +630,55 @@ frappe.ui.form.Form = class FrappeForm {
 			});
 		});
 	}
+	// ts customization
+	enter_key_tab(){
+		$(document).on("keydown", ".input-with-feedback", function(event) {
+		  if (event.keyCode == 13) {
+			event.preventDefault();
+			var $this = $(this);
+			var allInputs;
+			var nextIndex;
+			if ($this.closest(".form-grid").length) {
+			
+			  allInputs = $this.closest(".form-grid").find('.input-with-feedback:visible');
+			  nextIndex = allInputs.index(this) + 1;
+			 
+			  while (nextIndex < allInputs.length && (allInputs.eq(nextIndex).prop('readonly') || allInputs.eq(nextIndex).prop('disabled') || !allInputs.eq(nextIndex).is(":visible"))) {
+				nextIndex++;
+			  }
+			  
+			  if (nextIndex >= allInputs.length && $this.closest('.form-grid-row').next('.form-grid-row').length) {
+				
+				var newRow = $this.closest('.form-grid-row').next('.form-grid-row');
+				newRow.find('.input-with-feedback:visible').eq(0).focus();
+			  } else if (nextIndex >= allInputs.length && !$this.closest('.form-grid-row').next('.form-grid-row').length) {
+				
+				var tableBody = $this.closest('.form-grid-body');
+				var newRow = tableBody.find('.form-grid-row').last().clone();
+				newRow.find('.input-with-feedback').val('');
+				newRow.find('.input-with-feedback:visible').eq(0).focus();
+				tableBody.append(newRow);
+			  }
+			} else {
+				
+			  allInputs = $('.input-with-feedback:visible');
+			  nextIndex = allInputs.index(this) + 1;
+			  
+			  while (nextIndex < allInputs.length && (allInputs.eq(nextIndex).prop('readonly') || allInputs.eq(nextIndex).prop('disabled') || !allInputs.eq(nextIndex).is(":visible"))) {
+				nextIndex++;
+			  }
+			}
+			if (nextIndex < allInputs.length) {
+			  allInputs.eq(nextIndex).focus();
+			
+			  if (allInputs.eq(nextIndex).prop('nodeName') === "INPUT") {
+				allInputs.eq(nextIndex).select();
+			  }
+			}
+		  }
+		});
+	}
+
 
 	onload_post_render() {
 		this.setup_image_autocompletions_in_markdown();

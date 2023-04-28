@@ -481,6 +481,18 @@ frappe.Application = class Application {
 			});
 		}
 	}
+	trigger_sales_inv() {
+		
+		frappe.set_route("Form","Sales Invoice","new-sales-invoice-1");
+	}
+	trigger_purchase_inv() {
+		
+		frappe.set_route("Form","Purchase Invoice","new-purchase-invoice-1");
+	}
+	trigger_jobcard_inv() {
+		
+		frappe.set_route("Form","Tyre Job Card","new-tyre-job-card-1");
+	}
 	redirect_to_login() {
 		window.location.href = "/";
 	}

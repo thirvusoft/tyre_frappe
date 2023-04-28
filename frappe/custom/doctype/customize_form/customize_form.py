@@ -478,11 +478,13 @@ class CustomizeForm(Document):
 				self.flags.update_db = True
 
 		else:
-			frappe.throw(
-				_("Fieldtype cannot be changed from {0} to {1} in row {2}").format(
-					old_value, new_value, df.idx
-				)
-			)
+			pass
+			
+			# frappe.throw(
+			# 	_("Fieldtype cannot be changed from {0} to {1} in row {2}").format(
+			# 		old_value, new_value, df.idx
+			# 	)
+			# )
 
 	def validate_fieldtype_length(self):
 		for field in self.check_length_for_fieldtypes:

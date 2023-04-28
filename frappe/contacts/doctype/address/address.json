@@ -73,6 +73,7 @@
    "label": "County"
   },
   {
+   "default": "Tamil Nadu",
    "fieldname": "state",
    "fieldtype": "Data",
    "label": "State/Province"
@@ -148,7 +149,7 @@
  "icon": "fa fa-map-marker",
  "idx": 5,
  "links": [],
- "modified": "2020-10-21 16:14:37.284830",
+ "modified": "2023-04-27 13:08:29.317094",
  "modified_by": "Administrator",
  "module": "Contacts",
  "name": "Address",
@@ -212,5 +213,6 @@
  ],
  "search_fields": "country, state",
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }

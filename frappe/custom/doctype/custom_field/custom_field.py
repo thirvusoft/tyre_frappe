@@ -81,10 +81,10 @@ class CustomField(Document):
 			and (doc_before_save := self.get_doc_before_save())
 			and (old_fieldtype := doc_before_save.fieldtype) != self.fieldtype
 			and not CustomizeForm.allow_fieldtype_change(old_fieldtype, self.fieldtype)
-		):
-			frappe.throw(
-				_("Fieldtype cannot be changed from {0} to {1}").format(old_fieldtype, self.fieldtype)
-			)
+		):  pass
+			# frappe.throw(
+			# 	_("Fieldtype cannot be changed from {0} to {1}").format(old_fieldtype, self.fieldtype)
+			# )
 
 		if not self.fieldname:
 			frappe.throw(_("Fieldname not set for Custom Field"))

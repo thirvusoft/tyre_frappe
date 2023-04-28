@@ -201,7 +201,35 @@ frappe.ui.keys.add_shortcut({
 	},
 	description: __("Open Awesomebar"),
 });
-
+// TS CUSTOMIZATION
+frappe.ui.keys.add_shortcut({
+	shortcut: "s",
+	action: function (e) {
+		frappe.app.trigger_sales_inv();
+		e.preventDefault();
+		return false;
+	},
+	description: __("Sales Invoice"),
+});
+frappe.ui.keys.add_shortcut({
+	shortcut: "p",
+	action: function (e) {
+		frappe.app.trigger_purchase_inv();
+		e.preventDefault();
+		return false;
+	},
+	description: __("Purchase Invoice"),
+});
+frappe.ui.keys.add_shortcut({
+	shortcut: "j",
+	action: function (e) {
+		frappe.app.trigger_jobcard_inv();
+		e.preventDefault();
+		return false;
+	},
+	description: __("Tyre Job Card"),
+});
+// END
 frappe.ui.keys.add_shortcut({
 	shortcut: "ctrl+h",
 	action: function (e) {
